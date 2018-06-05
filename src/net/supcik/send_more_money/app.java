@@ -36,7 +36,7 @@ class puzzle {
         this.result = result;
     }
 
-    static int verbToInt(String verb, int[] mapping) {
+    private static int verbToInt(String verb, int[] mapping) {
         char[] v = verb.toUpperCase().toCharArray();
         if (mapping[v[0] - FIRST_LETTER] == 0) {
             return -1; // a number can't start with zero
@@ -48,7 +48,7 @@ class puzzle {
         return result;
     }
 
-    boolean isValidSolution(int[] mapping) {
+    private boolean isValidSolution(int[] mapping) {
         int sum = 0;
         for (String a : this.operands) {
             int n = verbToInt(a, mapping);
@@ -60,7 +60,7 @@ class puzzle {
         return sum == n;
     }
 
-    void recursiveSolve(char[] letters, int letterIndex, boolean[] digits, int[] mapping) {
+    private void recursiveSolve(char[] letters, int letterIndex, boolean[] digits, int[] mapping) {
         if (letterIndex >= letters.length) {
             if (this.isValidSolution(mapping)) {
                 System.out.printf("Found   %s%n", this.solutionString(mapping));
